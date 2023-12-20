@@ -7,6 +7,8 @@ public class PlayerController : MonoBehaviour
 {
     public static PlayerController Instance;
 
+    [SerializeField] private GameObject playerPrefab;
+    [SerializeField] private GameObject cameraPrefab;
     private Rigidbody2D rb;
     private Animator anim;
     private SpriteRenderer sprite;
@@ -65,9 +67,14 @@ public class PlayerController : MonoBehaviour
         Instance = this;
     }
 
-    public Vector3 GetPlayerTransform()
+    public Transform GetPlayerTransform()
     {
-        return gameObject.transform.position;
+        return gameObject.transform;
+    }
+
+    public void SpawnPlayer()
+    {
+        Instantiate(playerPrefab, new Vector2(0, 5), Quaternion.identity);
     }
 
     private void Start()
@@ -75,6 +82,8 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         sprite = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
+
+        Instantiate(cameraPrefab);
     }
 
     private void Update()
