@@ -6,7 +6,7 @@ public class Projectile : MonoBehaviour
     private float speed = 3f;
 
     private void Awake() {
-        targetPosition = PlayerController.Instance.GetPlayerTransform();
+        targetPosition = PlayerController.Instance.GetPlayerTransform().position;
     }
 
     private void Update()
